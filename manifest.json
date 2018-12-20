@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "atcoder-favorite-migrator",
+  "version": "1.0",
+
+  "permissions": [
+    "https://beta.atcoder.jp/_favorite_migrator",
+    "https://atcoder.jp/_favorite_migrator",
+    "webRequest",
+    "webRequestBlocking",
+    "storage"
+  ],
+
+  "background": {
+    "scripts": [
+      "src/browser-polyfill.js",
+      "src/background.js"
+    ]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://beta.atcoder.jp/_favorite_migrator"],
+      "js": [
+        "src/browser-polyfill.js",
+        "src/beta_atcoder_content_script.js"
+      ]
+    },
+    {
+      "matches": ["https://atcoder.jp/_favorite_migrator"],
+      "js": [
+        "src/browser-polyfill.js",
+        "src/new_atcoder_content_script.js"
+      ]
+    }
+  ]
+}
